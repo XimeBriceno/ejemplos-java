@@ -19,6 +19,7 @@ import java.util.Arrays;
 public class LeerArchivoTexto {
 
     private Scanner entrada;
+   
 
     // permite al usuario abrir el archivo
     public void abrirArchivo() {
@@ -38,10 +39,15 @@ public class LeerArchivoTexto {
         {
             while (entrada.hasNext()) {
                 String linea = entrada.nextLine();
-                // System.out.println(linea);
+                //System.out.println(linea);
                 ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
-                System.out.println(linea_partes);
-
+                //System.out.println(linea_partes.get(0));
+                
+                double suma = 0.0;
+                for(String s: linea_partes){
+                    suma = suma + Double.parseDouble(s);
+                }
+                System.out.println("Suma posicion columna 1 es:"+suma);
             } // fin de while
         } // fin de try
         catch (NoSuchElementException elementException) {
@@ -50,7 +56,7 @@ public class LeerArchivoTexto {
             System.exit(1);
         } // fin de catch
         catch (IllegalStateException stateException) {
-            System.err.println("Error al leer del archivo.");
+            System.err.println("Error al leer el archivo.");
             System.exit(1);
         } // fin de catch
     } // fin del metodo leerRegistros
