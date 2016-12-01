@@ -5,7 +5,6 @@ package lecturaArchivos;
 // CÓMO PROGRAMAR EN J AVA . Séptima edición
 // fines educativos
 // Prueba de la clase ArchivoTexto.
-
 // Este programa lee un archivo de texto y muestra cada registro.
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +18,6 @@ import java.util.Arrays;
 public class LeerArchivoTexto {
 
     private Scanner entrada;
-   
 
     // permite al usuario abrir el archivo
     public void abrirArchivo() {
@@ -34,21 +32,27 @@ public class LeerArchivoTexto {
 
     // lee registro del archivo
     public void leer_informacion() {
-
+        int b = 0;
         try // lee registros del archivo, usando el objeto Scanner
         {
             while (entrada.hasNext()) {
                 String linea = entrada.nextLine();
-                //System.out.println(linea);
-                ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
-                //System.out.println(linea_partes.get(0));
+
+                int a = 0;
                 
-                double suma = 0.0;
-                for(String s: linea_partes){
-                    suma = suma + Double.parseDouble(s);
+                
+                System.out.println(linea);
+                ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
+                System.out.println(linea_partes);
+                for (int i = 0; i < linea_partes.size(); i++) {
+                    a = a + Integer.parseInt(linea_partes.get(i));
+                   
                 }
-                System.out.println("Suma posicion columna 1 es:"+suma);
-            } // fin de while
+                b = a + b;
+                System.out.println("la suma es: " + a);       
+            }
+            System.out.println("la suma total es: " + b);
+            // fin de while
         } // fin de try
         catch (NoSuchElementException elementException) {
             System.err.println("El archivo no esta bien formado.");
@@ -56,9 +60,10 @@ public class LeerArchivoTexto {
             System.exit(1);
         } // fin de catch
         catch (IllegalStateException stateException) {
-            System.err.println("Error al leer el archivo.");
+            System.err.println("Error al leer del archivo.");
             System.exit(1);
-        } // fin de catch
+        }
+        // fin de catch
     } // fin del metodo leerRegistros
     // cierra el archivo y termina la aplicación
 
@@ -67,5 +72,9 @@ public class LeerArchivoTexto {
             entrada.close(); // cierra el archivo
         }
     } // fin del metodo cerrarArchivo
+
+    public void sumar() {
+
+    }
 } // fin de la clase LeerArchivoTexto
 

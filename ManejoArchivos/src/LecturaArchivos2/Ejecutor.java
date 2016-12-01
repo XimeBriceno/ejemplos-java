@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package NuevoArchivo;
+package LecturaArchivos2;
 
 /**
  *
  * @author SALAS
  */
-public class PruebaArchivo {
+public class Ejecutor {
     public static void main( String args[] )
    {
-      ArchivoTexto aplicacion = new ArchivoTexto();
-
-      aplicacion.abrir_archivo();
-      aplicacion.agregar_informacion();
-      aplicacion.cerrar_archivo();
-   } // fin de main
+       LeerArchivo a= new LeerArchivo();
+       
+       a.abrirArchivo();
+       a.leer_informacion();
+       a.cerrarArchivo();
+   }
+    
 }

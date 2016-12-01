@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Archivos2;
+package LecturaArchivos2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Formatter;
-import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -19,9 +17,8 @@ import java.util.Scanner;
  * @author SALAS
  */
 public class LeerArchivo {
+
     private Scanner entrada;
-    int cal1, cal2;
-    double promedio;
 
     // permite al usuario abrir el archivo
     public void abrirArchivo() {
@@ -36,39 +33,59 @@ public class LeerArchivo {
 
     // lee registro del archivo
     public void leer_informacion() {
+        int b = 0;
+        double q = 0;
+        double mayor=0;
 
+        double[] prome = new double[5];
         try // lee registros del archivo, usando el objeto Scanner
         {
             while (entrada.hasNext()) {
                 String linea = entrada.nextLine();
-                System.out.println(linea);
+
+                double a = 0;
+                double c = 0;
+                //System.out.println(linea);
                 ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
+                //System.out.println(linea_partes);
                 
-                promedio = Integer.parseInt(linea_partes);
-                cal1 = Double.parseDouble(linea_partes);
-                cal2 = Double.parseDouble(linea_partes);
-                int contador = 0;
-//                for(String s: linea_partes){
-//                    contador = contador + calificaciones.get(i);
-//                }
-//                
-            } // fin de while
-        } // fin de try
-        catch (NoSuchElementException elementException) {
+                for (int i = 0; i < linea_partes.size(); i++) {
+                    
+                    if (i >= 2) {
+                        a = a + Integer.parseInt(linea_partes.get(i));
+                        c = a / 2;
+                        if(c>mayor){
+                            mayor=c;
+                        }
+                    }
+                }
+                System.out.printf("El promedio de calificaciones de %s  es de %.2f \n", linea_partes, c);
+            }
+            System.out.println("El mejor promedio es  "+ mayor);
+            // fin de while
+         }catch (NoSuchElementException elementException) {
             System.err.println("El archivo no esta bien formado.");
             entrada.close();
             System.exit(1);
         } // fin de catch
-        catch (IllegalStateException stateException) {
-            System.err.println("Error al leer el archivo.");
+            catch (IllegalStateException stateException) {
+            System.err.println("Error al leer del archivo.");
             System.exit(1);
-        } // fin de catch
-    } // fin del metodo leerRegistros
-    // cierra el archivo y termina la aplicación
+        }
+            // fin de catch
+        } // fin del metodo leerRegistros
+        // cierra el archivo y termina la aplicación
+
+    
 
     public void cerrarArchivo() {
         if (entrada != null) {
             entrada.close(); // cierra el archivo
         }
     } // fin del metodo cerrarArchivo
-}
+
+    public void sumar() {
+
+    }
+} // fin de la clase LeerArchivoTexto
+

@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package NuevoArchivo;
+package EscrituraArchivos3;
+
 
 import java.io.FileNotFoundException;
 import java.util.Formatter;
@@ -15,11 +16,12 @@ import java.util.Scanner;
  *
  * @author SALAS
  */
-public class ArchivoTexto {
+public class Calificaciones {
+
     private Formatter salida; // objeto usado para enviar texto al archivo
 
     // permite al usuario abrir el archivo
-    public void abrir_archivo() {
+    public void abrir_archivo() throws FileNotFoundException {
         try {
             salida = new Formatter("Calificaciones.txt");
         } // fin de try
@@ -37,8 +39,8 @@ public class ArchivoTexto {
     // agrega registros al archivo
     public void agregar_informacion() {
         // el archivo permite el ingreso
-        // de nombre, apellido de una persona, calificaciones 1 y 2
-        
+        // de edad, nombre, apellido de una persona
+
         Scanner entrada = new Scanner(System.in);
         boolean bandera = true;
 
@@ -47,17 +49,16 @@ public class ArchivoTexto {
             try // envía valores al archivo
             {
                 // obtiene los datos que se van a enviar
-                System.out.println("Ingrese el nombre de la persona");
-                String nombre = entrada.next(); // lee la nombre 
-                System.out.println("Ingrese el apellido de la persona");
-                String apellido = entrada.next(); // lee el apellido
+                System.out.println("Ingrese el nombre");
+                String nombre = entrada.next(); // lee la edad 
+                System.out.println("Ingrese el apellido");
+                String apellido = entrada.next(); // lee el nombre
                 System.out.println("Ingrese la calificacion 1");
-                double calif1 = entrada.nextDouble(); // lee la calificacion 1
+                double calif1 = entrada.nextDouble(); // lee el apellido
                 System.out.println("Ingrese la calificacion 2");
-                double calif2 = entrada.nextDouble(); // lee la calificacion 1
-
+                double calif2 = entrada.nextDouble();
                 // escribe el nuevo registro (escribe en el archivo
-                salida.format("%s;%s;%.2f;%.2f\n", nombre, apellido, calif1, calif2);
+                salida.format("%s;%s;%.2f;.2%f;\n", nombre, apellido,calif1,calif2);
 
                 System.out.println("Desea ingresar más datos si (1), no(2)");
                 int valor = entrada.nextInt();
@@ -84,4 +85,6 @@ public class ArchivoTexto {
             salida.close();
         }
     } // fin del método cerrarArchivo
-}
+} // fin de la clase ArchivoTexto
+
+
